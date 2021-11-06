@@ -60,10 +60,18 @@ namespace RouteTests
         public void TestGetLength()
         {
             route = new Route();
-            for (int i = 0; i < 4; i++)
+            int pointsAmount = 3;
+            for (int i = 0; i < pointsAmount; i++)
             {
-                
+                route.AddPoint(10 + i, 5 + i, i);
             }
+            double finalDistance = 0;
+            List<Point> allPoints = route.GetPoints();
+            for (int i = 0; i < pointsAmount - 1; i++)
+            {
+                finalDistance += allPoints[i].Distance(allPoints[i + 1]);
+            }
+            Assert.AreEqual(finalDistance, route.GetLength());
         }
 
     }
